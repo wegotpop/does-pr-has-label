@@ -2,7 +2,7 @@ const core = require("@actions/core");
 
 const github = require("@actions/github");
 
-const labels = core.getInput("labels", {required: true});
+const labels = core.getInput("labels", {required: true}).split(",");
 
 core.setOutput("checkedLabels", labels);
 
