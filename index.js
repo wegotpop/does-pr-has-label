@@ -2,13 +2,15 @@ const core = require("@actions/core");
 
 const github = require("@actions/github");
 
-const label = core.getInput("label");
+const labels = core.getInput("labels", {required: true});
 
-core.setOutput("checkedLabel", label);
-const hasLabel = github.context.payload.pull_request.labels.some(
-  item => item.name === label
-);
+core.setOutput("checkedLabels", labels);
+
+let hasLabel = false;
+labels.foreach(label => github.context.payload.pull_request.labels.some(
+    item => { if (item.name === label) { hasLabel = true; }}
+));
 core.setOutput("hasLabel", hasLabel);
 
 console.log(`Does 'pull_request' has '${label}' label?: ${hasLabel}`);
-console.log(`You can use this output as 'steps.<step id>.outputs.hasLabel' and 'steps.<step id>.outputs.checkedLabel' `);
+console.log(`You can use this output as 'steps.<step id>.outputs.hasLabel' and 'steps.<step id>.outputs.checkedLabels' `);
