@@ -8,7 +8,7 @@ core.setOutput("checkedLabels", labels);
 
 let hasLabel = false;
 labels.foreach(label => github.context.payload.pull_request.labels.some(
-    item => { if (item.name === label) { hasLabel = true; }}
+    item => { if (item.name === label.trim()) { hasLabel = true; }}
 ));
 core.setOutput("hasLabel", hasLabel);
 
