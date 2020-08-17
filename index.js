@@ -7,7 +7,7 @@ const labels = core.getInput("labels", {required: true}).split(",");
 core.setOutput("checkedLabels", labels);
 
 const hasLabel = labels.some(
-    label => github.context.payload.pull_request.label.some(
+    label => github.context.payload.pull_request.labels.some(
 	item => item.name === label.trim()
     )
 );

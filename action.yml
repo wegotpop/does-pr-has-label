@@ -1,8 +1,8 @@
-name: 'Does PR has the label?'
+name: 'Does PR has at least one of the labels?'
 description: 'Returns true or false depending on whether the PR has the specified label'
 inputs:
-  label:  
-    description: 'The label'
+  labels:  
+    description: 'Comma separated list of labels'
     required: true
 outputs:
   has-label: 
